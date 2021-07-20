@@ -20,4 +20,14 @@ public interface XTBeanFactory {
      * @throws RuntimeException
      */
     <T> T getBean(Class<T> requiredType) throws RuntimeException;
+
+
+    /**
+     * 检查 beanName 的实列是不是 typeToMatch 类或其子类
+     * @param beanName
+     * @param typeToMatch
+     * @return
+     * @throws RuntimeException
+     */
+    boolean isTypeMatch(String beanName, Class<?> typeToMatch);
 }

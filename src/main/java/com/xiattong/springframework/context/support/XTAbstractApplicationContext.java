@@ -58,6 +58,18 @@ public abstract class XTAbstractApplicationContext implements XTApplicationConte
      */
     @Override
     public void refresh() throws RuntimeException {
+
+        // 注册 BeanPostProcessor
+        // 源码由 ：org.springframework.context.support.AbstractApplicationContext#registerBeanPostProcessors
+        //       org.springframework.context.support.PostProcessorRegistrationDelegate#registerBeanPostProcessors(
+        //              org.springframework.beans.factory.config.ConfigurableListableBeanFactory,
+        //              java.util.List<org.springframework.beans.factory.config.BeanPostProcessor>
+        //       ) 实现
+        // 注意，不实现 Ordered 接口的 BeanPostProcessor 由 registerBeanPostProcessors(beanFactory, nonOrderedPostProcessors);代码注册
+        beanFactory.registerBeanPostProcessors();
+
+
+        // 源码由 org.springframework.context.support.AbstractApplicationContext#finishBeanFactoryInitialization 调用
         // Instantiate all remaining (non-lazy-init) singletons.
         beanFactory.preInstantiateSingletons();
     }

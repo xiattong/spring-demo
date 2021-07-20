@@ -1,5 +1,6 @@
 package com.xiattong.springframework.utils;
 
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -23,5 +24,15 @@ public class StringUtils {
         char [] chars = simpleName.toCharArray();
         chars[0] += 32;     //利用了ASCII码，大写字母和小写相差32这个规律
         return String.valueOf(chars);
+    }
+
+
+    /**
+     * 集合转数组
+     * @param collection
+     * @return
+     */
+    public static String[] toStringArray(Collection<String> collection) {
+        return collection.toArray(new String[collection.size()]);
     }
 }

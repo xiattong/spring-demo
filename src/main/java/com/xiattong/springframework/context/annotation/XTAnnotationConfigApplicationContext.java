@@ -20,4 +20,8 @@ public class XTAnnotationConfigApplicationContext extends XTAbstractApplicationC
         refresh();
     }
 
+    @Override
+    public boolean isTypeMatch(String beanName, Class<?> typeToMatch) {
+        return false;
+    }
 }
