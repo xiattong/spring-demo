@@ -4,6 +4,7 @@ import com.xiattong.springframework.beans.XTBeanWrapper;
 import com.xiattong.springframework.beans.factory.XTBeanFactory;
 import com.xiattong.springframework.beans.factory.config.XTBeanDefinition;
 import com.xiattong.springframework.beans.factory.config.XTBeanPostProcessor;
+import com.xiattong.springframework.beans.factory.config.XTSingletonBeanRegistry;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @modified By：
  */
 @Slf4j
-public abstract class XTAbstractBeanFactory implements XTBeanFactory {
+public abstract class XTAbstractBeanFactory extends XTDefaultSingletonBeanRegistry implements XTBeanFactory {
 
     /**
      * Cache of singleton objects created by FactoryBeans: FactoryBean name --> object
@@ -55,12 +56,35 @@ public abstract class XTAbstractBeanFactory implements XTBeanFactory {
      */
     protected abstract XTBeanDefinition getBeanDefinition(String beanName) throws RuntimeException;
 
+
+    /**
+     * 对应源码：org.springframework.beans.factory.support.AbstractBeanFactory#doGetBean
+     * @param name
+     * @return
+     * @throws RuntimeException
+     */
     @Override
     public Object getBean(String name) throws RuntimeException {
-        XTBeanDefinition beanDefinition = getBeanDefinition(name);
         try {
             // 生成通知事件
+            Object sharedInstance = getSingleton(name);
+            if(sharedInstance == null) {
+                // 实例化，并保存到 singletonObjects 中
+                sharedInstance = getSingleton(name, () -> {
+                    try {
+                        return createBean(name);
+                    }
+                    catch (RuntimeException ex) {
+                        // Explicitly remove instance from singleton cache: It might have been put there
+                        // eagerly by the creation process, to allow for circular reference resolution.
+                        // Also remove any beans that received a temporary reference to the bean.
+                        destroySingleton(name);
+                        throw ex;
+                    }
+                });
 
+            }
+            return sharedInstance;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,5 +129,14 @@ public abstract class XTAbstractBeanFactory implements XTBeanFactory {
     public List<XTBeanPostProcessor> getBeanPostProcessors() {
         return this.beanPostProcessors;
     }
+
+
+    /**
+     * Create a bean instance for the given bean definition
+     * @param beanName
+     * @return
+     * @throws RuntimeException
+     */
+    protected abstract Object createBean(String beanName)  throws RuntimeException;
 }
 

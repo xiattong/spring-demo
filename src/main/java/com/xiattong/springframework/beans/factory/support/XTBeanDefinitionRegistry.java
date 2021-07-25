@@ -1,5 +1,6 @@
 package com.xiattong.springframework.beans.factory.support;
 
+import com.sun.istack.internal.Nullable;
 import com.xiattong.springframework.beans.factory.config.XTBeanDefinition;
 
 /**

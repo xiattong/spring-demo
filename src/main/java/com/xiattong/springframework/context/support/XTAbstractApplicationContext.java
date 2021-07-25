@@ -26,6 +26,8 @@ public abstract class XTAbstractApplicationContext implements XTApplicationConte
 
     public XTAbstractApplicationContext() {
         this.reader = new XTBeanDefinitionReader(this);
+        // 源码中，执行 AnnotationConfigApplicationContext 构造函数时，会先执行父类 GenericApplicationContext 的构造函数
+        // defaultListableBeanFactory 的初始化在 GenericApplicationContext 的构造函数中实现
         this.beanFactory = new XTDefaultListableBeanFactory();
     }
 

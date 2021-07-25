@@ -84,6 +84,30 @@ public class XTDefaultListableBeanFactory extends XTAbstractBeanFactory implemen
         return bd;
     }
 
+    /**
+     * 对应源码：org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#createBean(
+     *          java.lang.String, org.springframework.beans.factory.support.RootBeanDefinition, java.lang.Object[])
+     * 源码中会调用 org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#doCreateBean 方法，咱这省了
+     *
+     * @param beanName
+     * @return
+     * @throws RuntimeException
+     */
+    @Override
+    protected Object createBean(String beanName) throws RuntimeException {
+        // Bean 实例化
+        // 对应源码：nstanceWrapper = createBeanInstance(beanName, mbd, args);
+
+
+        // Bean 属性的依赖注入
+        // 对应源码：populateBean(beanName, mbd, instanceWrapper);
+
+
+        // 为容器创建的Bean实例对象添加BeanPostProcessor后置处理器
+        // 对应源码：exposedObject = initializeBean(beanName, exposedObject, mbd);
+
+        return null;
+    }
 
     /**
      * 注册 BeanPostProcessor 实列
@@ -122,4 +146,6 @@ public class XTDefaultListableBeanFactory extends XTAbstractBeanFactory implemen
             }
         }
     }
+
+
 }

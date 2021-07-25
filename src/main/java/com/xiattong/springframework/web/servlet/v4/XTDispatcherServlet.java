@@ -1,5 +1,7 @@
 package com.xiattong.springframework.web.servlet.v4;
 
+import com.xiattong.springframework.context.annotation.XTAnnotationConfigApplicationContext;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +30,6 @@ public class XTDispatcherServlet extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-
+        XTAnnotationConfigApplicationContext context = new XTAnnotationConfigApplicationContext(config.getInitParameter("contextConfigLocation"))
     }
 }
