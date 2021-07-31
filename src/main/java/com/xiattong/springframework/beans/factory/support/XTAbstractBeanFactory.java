@@ -28,7 +28,7 @@ public abstract class XTAbstractBeanFactory extends XTDefaultSingletonBeanRegist
      * 在源码中，这是用来存储 由 FactoryBeans 创建的 单例对象的 缓存。
      *
      * 教材表述为: 单列的 IoC 容器缓存
-     * 我认为： 教材的表述是有问题的，单列的 IoC 容器缓存在源码中实际是：org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#singletonObjects
+     * 我认为教材的表述是有问题的，单列的 IoC 容器缓存在源码中实际是：org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#singletonObjects
      *
      */
     private final Map<String, Object> factoryBeanObjectCache = new ConcurrentHashMap<>(16);

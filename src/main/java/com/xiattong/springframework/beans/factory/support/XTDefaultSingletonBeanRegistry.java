@@ -19,6 +19,7 @@ public class XTDefaultSingletonBeanRegistry implements XTSingletonBeanRegistry {
 
     /**
      * Cache of singleton objects: bean name --> bean instance
+     * key ： SimpleName
      */
     private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 

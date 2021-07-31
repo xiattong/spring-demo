@@ -1,5 +1,7 @@
 package com.xiattong.springframework.beans;
 
+import lombok.Getter;
+
 /**
  * @author ：xiattong
  * @description：封装创建后的对象实例
@@ -12,13 +14,15 @@ package com.xiattong.springframework.beans;
 public class XTBeanWrapper {
 
     /** Bean 实列*/
-    private Object wrapperInstance;
+    @Getter
+    private Object wrappedInstance;
 
-    public XTBeanWrapper(Object wrapperInstance) {
-        this.wrapperInstance = wrapperInstance;
+
+    public XTBeanWrapper(Object wrappedInstance) {
+        this.wrappedInstance = wrappedInstance;
     }
 
-    public Class<?> getWrapperClass() {
-        return this.wrapperInstance.getClass();
+    public Class<?> getWrappedClass() {
+        return this.wrappedInstance.getClass();
     }
 }

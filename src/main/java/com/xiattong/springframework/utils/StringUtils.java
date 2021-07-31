@@ -35,4 +35,22 @@ public class StringUtils {
     public static String[] toStringArray(Collection<String> collection) {
         return collection.toArray(new String[collection.size()]);
     }
+
+    /**
+     * empty 判断
+     * @param str
+     * @return
+     */
+    public static boolean isEmpty(String str) {
+        return str == null || "".equals(str);
+    }
+
+    /**
+     * not empty 判断
+     * @param str
+     * @return
+     */
+    public static boolean isNotEmpty(String str) {
+        return !isEmpty(str);
+    }
 }

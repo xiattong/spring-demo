@@ -11,6 +11,10 @@ import lombok.Setter;
 @Setter
 public class XTBeanDefinition {
 
+    /**
+     * @param beanClassName 类全名
+     * @param factoryBeanName  SimpleName
+     */
     public XTBeanDefinition(String beanClassName, String factoryBeanName) {
         this.beanClassName = beanClassName;
         this.factoryBeanName = factoryBeanName;
