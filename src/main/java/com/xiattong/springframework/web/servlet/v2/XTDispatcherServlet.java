@@ -1,6 +1,5 @@
 package com.xiattong.springframework.web.servlet.v2;
 
-import com.xiattong.spring.framework.annotation.*;
 import com.xiattong.springframework.utils.StringUtils;
 import com.xiattong.springframework.annotation.*;
 
@@ -42,7 +41,7 @@ public class XTDispatcherServlet extends HttpServlet {
     //保存所有扫描的类的实例
     private Map<String,Object> ioc = new HashMap<String,Object>();
 
-    //保存Controller中URL和Method的对应关系
+    //保存Controller中URL和Method的关系
     private Map<String, Method> handlerMapping = new HashMap<String, Method>();
 
     @Override

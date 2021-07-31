@@ -19,9 +19,4 @@ public class XTAnnotationConfigApplicationContext extends XTAbstractApplicationC
         // 初始化非懒加载的 Bean
         refresh();
     }
-
-    @Override
-    public boolean isTypeMatch(String beanName, Class<?> typeToMatch) {
-        return false;
-    }
 }

@@ -61,7 +61,7 @@ public class XTBeanDefinitionReader {
 
     /**
      *
-     * 对于源码：org.springframework.context.annotation.ClassPathBeanDefinitionScanner#doScan
+     * 源码：org.springframework.context.annotation.ClassPathBeanDefinitionScanner#doScan
      * @param basePackages
      */
     private void doScan(String basePackages) {

@@ -42,7 +42,7 @@ public class XTDispatcherServlet extends HttpServlet {
     //保存所有扫描的类的实例
     private Map<String,Object> ioc = new HashMap<String,Object>();
 
-    //保存Controller中URL和Method的对应关系
+    //保存Controller中URL和Method的关系
     private List<Handler> handlerMapping = new ArrayList<>();
 
     @Override
@@ -281,7 +281,7 @@ public class XTDispatcherServlet extends HttpServlet {
      * 替代现有的 HandlerMapping
      */
     private class Handler {
-        /** 方法对应的实列*/
+        /** 方法的实列*/
         private Object controller;
         /** 方法*/
         private Method method;

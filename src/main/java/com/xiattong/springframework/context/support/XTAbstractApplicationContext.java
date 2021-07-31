@@ -44,7 +44,7 @@ public abstract class XTAbstractApplicationContext implements XTApplicationConte
 
     /**
      * 注册指定资源路径下的 BeanDefinition
-     * 对于源码：org.springframework.context.annotation.AnnotationConfigApplicationContext#register
+     * 源码：org.springframework.context.annotation.AnnotationConfigApplicationContext#register
      * @param configLocations
      */
     @Override
@@ -55,7 +55,7 @@ public abstract class XTAbstractApplicationContext implements XTApplicationConte
 
     /**
      * 初始化非懒加载的 Bean
-     * 对应源码：org.springframework.context.support.AbstractApplicationContext#refresh
+     * 源码：org.springframework.context.support.AbstractApplicationContext#refresh
      * @throws RuntimeException
      */
     @Override
@@ -78,7 +78,7 @@ public abstract class XTAbstractApplicationContext implements XTApplicationConte
 
 
     /**
-     * 对应源码：org.springframework.context.support.AbstractApplicationContext#getBean(java.lang.String)
+     * 源码：org.springframework.context.support.AbstractApplicationContext#getBean(java.lang.String)
      * @param name
      * @return
      * @throws RuntimeException
@@ -89,7 +89,7 @@ public abstract class XTAbstractApplicationContext implements XTApplicationConte
     }
 
     /**
-     * 对应源码：org.springframework.context.support.AbstractApplicationContext#getBean(java.lang.Class<T>)
+     * 源码：org.springframework.context.support.AbstractApplicationContext#getBean(java.lang.Class<T>)
      * @param requiredType
      * @return
      * @throws RuntimeException
@@ -99,4 +99,12 @@ public abstract class XTAbstractApplicationContext implements XTApplicationConte
         return beanFactory.getBean(requiredType);
     }
 
+    @Override
+    public boolean isTypeMatch(String beanName, Class<?> typeToMatch) {
+        return getBeanFactory().isTypeMatch(beanName, typeToMatch);
+    }
+
+    public XTDefaultListableBeanFactory getBeanFactory() throws RuntimeException {
+        return this.beanFactory;
+    }
 }

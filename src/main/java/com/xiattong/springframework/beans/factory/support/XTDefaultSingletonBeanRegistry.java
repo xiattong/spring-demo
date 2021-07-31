@@ -24,7 +24,7 @@ public class XTDefaultSingletonBeanRegistry implements XTSingletonBeanRegistry {
     private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 
     /**
-     * 对应源码：org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#getSingleton(java.lang.String)
+     * 源码：org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#getSingleton(java.lang.String)
      * @param beanName
      * @return
      */
@@ -34,7 +34,7 @@ public class XTDefaultSingletonBeanRegistry implements XTSingletonBeanRegistry {
     }
 
     /**
-     * 对应源码 ：org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#getSingleton(
+     * 源码 ：org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#getSingleton(
      *      java.lang.String, org.springframework.beans.factory.ObjectFactory<?>)
      * Return the (raw) singleton object registered under the given name,
      * creating and registering a new one if none registered yet.
@@ -63,7 +63,7 @@ public class XTDefaultSingletonBeanRegistry implements XTSingletonBeanRegistry {
 
 
     /**
-     * 对应源码：org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#addSingleton
+     * 源码：org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#addSingleton
      * Add the given singleton object to the singleton cache of this factory.
      * <p>To be called for eager registration of singletons.
      * @param beanName the name of the bean
@@ -76,7 +76,7 @@ public class XTDefaultSingletonBeanRegistry implements XTSingletonBeanRegistry {
     }
 
     /**
-     * 对应源码：org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#destroySingleton
+     * 源码：org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#destroySingleton
      * Remove the bean with the given name from the singleton cache of this factory,
      * to be able to clean up eager registration of a singleton if creation failed.
      * @param beanName the name of the bean

@@ -24,7 +24,7 @@ public abstract class XTAbstractBeanFactory extends XTDefaultSingletonBeanRegist
 
     /**
      * Cache of singleton objects created by FactoryBeans: FactoryBean name --> object
-     * 对应源码：org.springframework.beans.factory.support.FactoryBeanRegistrySupport#factoryBeanObjectCache
+     * 源码：org.springframework.beans.factory.support.FactoryBeanRegistrySupport#factoryBeanObjectCache
      * 在源码中，这是用来存储 由 FactoryBeans 创建的 单例对象的 缓存。
      *
      * 教材表述为: 单列的 IoC 容器缓存
@@ -35,14 +35,14 @@ public abstract class XTAbstractBeanFactory extends XTDefaultSingletonBeanRegist
 
     /**
      * Cache of unfinished FactoryBean instances: FactoryBean name --> BeanWrapper
-     * 对应源码：org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#factoryBeanInstanceCache
+     * 源码：org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#factoryBeanInstanceCache
      * 通用的 IoC 容器
      */
     private final Map<String, XTBeanWrapper> factoryBeanInstanceCache = new ConcurrentHashMap<>(16);
 
     /**
      * 存储所有 XTBeanPostProcessor 实列
-     * 对应源码：org.springframework.beans.factory.support.AbstractBeanFactory#beanPostProcessors
+     * 源码：org.springframework.beans.factory.support.AbstractBeanFactory#beanPostProcessors
      * BeanPostProcessors to apply in createBean
      */
     private final List<XTBeanPostProcessor> beanPostProcessors = new ArrayList<>(16);
@@ -58,7 +58,7 @@ public abstract class XTAbstractBeanFactory extends XTDefaultSingletonBeanRegist
 
 
     /**
-     * 对应源码：org.springframework.beans.factory.support.AbstractBeanFactory#doGetBean
+     * 源码：org.springframework.beans.factory.support.AbstractBeanFactory#doGetBean
      * @param name
      * @return
      * @throws RuntimeException
@@ -114,7 +114,7 @@ public abstract class XTAbstractBeanFactory extends XTDefaultSingletonBeanRegist
     }
 
     /**
-     * 对应源码：org.springframework.beans.factory.support.AbstractBeanFactory#addBeanPostProcessor
+     * 源码：org.springframework.beans.factory.support.AbstractBeanFactory#addBeanPostProcessor
      * @param beanPostProcessor
      */
     public void addBeanPostProcessor(XTBeanPostProcessor beanPostProcessor) {
@@ -123,7 +123,7 @@ public abstract class XTAbstractBeanFactory extends XTDefaultSingletonBeanRegist
     }
 
     /**
-     * 对应源码：org.springframework.beans.factory.support.AbstractBeanFactory#getBeanPostProcessors
+     * 源码：org.springframework.beans.factory.support.AbstractBeanFactory#getBeanPostProcessors
      * @return
      */
     public List<XTBeanPostProcessor> getBeanPostProcessors() {

@@ -1,6 +1,10 @@
 package com.xiattong.springframework.web.servlet.v4;
 
+import com.sun.istack.internal.Nullable;
 import com.xiattong.springframework.context.annotation.XTAnnotationConfigApplicationContext;
+import com.xiattong.springframework.web.servlet.XTHandlerAdapter;
+import com.xiattong.springframework.web.servlet.XTHandlerMapping;
+import com.xiattong.springframework.web.servlet.XTViewResolver;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -8,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author ：xiattong
@@ -18,6 +23,22 @@ import java.io.IOException;
  * @modified By：
  */
 public class XTDispatcherServlet extends HttpServlet {
+
+    /**
+     * List of HandlerMappings used by this servlet
+     * 源码： org.springframework.web.servlet.DispatcherServlet#handlerMappings
+     */
+
+    @Nullable
+    private List<XTHandlerMapping> handlerMappings;
+
+    /** List of HandlerAdapters used by this servlet */
+    @Nullable
+    private List<XTHandlerAdapter> handlerAdapters;
+
+    /** List of ViewResolvers used by this servlet */
+    @Nullable
+    private List<XTViewResolver> viewResolvers;
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,6 +51,9 @@ public class XTDispatcherServlet extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        XTAnnotationConfigApplicationContext context = new XTAnnotationConfigApplicationContext(config.getInitParameter("contextConfigLocation"))
+        // 初始化 IoC
+        XTAnnotationConfigApplicationContext context = new XTAnnotationConfigApplicationContext(config.getInitParameter("contextConfigLocation"));
+        //
+        context.getBean("demoService");
     }
 }
