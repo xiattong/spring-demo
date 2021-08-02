@@ -16,4 +16,13 @@ public interface XTBeanDefinitionRegistry {
      */
     void registerBeanDefinition(String beanName, XTBeanDefinition beanDefinition)
             throws RuntimeException;
+
+
+    /**
+     * 源码：org.springframework.beans.factory.support.BeanDefinitionRegistry#getBeanDefinitionNames
+     * Return the names of all beans defined in this registry.
+     * @return the names of all beans defined in this registry,
+     * or an empty array if none defined
+     */
+    String[] getBeanDefinitionNames();
 }

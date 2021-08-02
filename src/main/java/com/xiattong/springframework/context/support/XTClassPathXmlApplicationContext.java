@@ -1,4 +1,4 @@
-package com.xiattong.springframework.context.annotation;
+package com.xiattong.springframework.context.support;
 
 import com.xiattong.springframework.context.support.XTAbstractApplicationContext;
 
@@ -9,11 +9,11 @@ import com.xiattong.springframework.context.support.XTAbstractApplicationContext
  * @date ：Created in 2021/7/16 7:52
  * @modified By：
  */
-public class XTAnnotationConfigApplicationContext extends XTAbstractApplicationContext {
+public class XTClassPathXmlApplicationContext extends XTAbstractApplicationContext {
 
 
 
-    public XTAnnotationConfigApplicationContext(String... configLocations) {
+    public XTClassPathXmlApplicationContext(String... configLocations) {
         // 注册BeanDefinition，初始化 IoC 容器
         register(configLocations);
         // 初始化非懒加载的 Bean

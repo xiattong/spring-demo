@@ -11,6 +11,7 @@ import com.xiattong.springframework.beans.factory.config.XTBeanPostProcessor;
 import com.xiattong.springframework.utils.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.annotation.PreDestroy;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +67,7 @@ public class XTDefaultListableBeanFactory extends XTAbstractBeanFactory implemen
         if (resolvedBeanNames != null) {
             return resolvedBeanNames;
         }
-        // 从 beanDefinitionNames 中，找到所有匹配的BeanName
+        // 从 beanDefinitionNames 中，找到所有匹配的 BeanName
         // 源码：org.springframework.beans.factory.support.DefaultListableBeanFactory#doGetBeanNamesForType
         List<String> result = new ArrayList<>();
         for (String beanName : this.beanDefinitionNames) {
@@ -115,7 +116,6 @@ public class XTDefaultListableBeanFactory extends XTAbstractBeanFactory implemen
         // 构造 BeanWrapper 对象
         XTBeanWrapper instanceWrapper = createBeanInstance(beanName);
 
-
         // Initialize the bean instance.
         final Object bean = instanceWrapper.getWrappedInstance();
         Object exposedObject = bean;
@@ -123,7 +123,6 @@ public class XTDefaultListableBeanFactory extends XTAbstractBeanFactory implemen
             // Bean 属性的依赖注入
             // 源码：populateBean(beanName, mbd, instanceWrapper);
             populateBean(instanceWrapper);
-
 
             // 为容器创建的Bean实例对象添加BeanPostProcessor后置处理器
             // BeanPostProcessor#postProcessBeforeInitialization 和 BeanPostProcessor#postProcessAfterInitialization 执行
@@ -133,9 +132,6 @@ public class XTDefaultListableBeanFactory extends XTAbstractBeanFactory implemen
         }catch (Throwable ex) {
             throw new RuntimeException("Initialization of bean failed", ex);
         }
-
-
-
         return exposedObject;
     }
 
@@ -257,7 +253,12 @@ public class XTDefaultListableBeanFactory extends XTAbstractBeanFactory implemen
         }
 
         // 源码中还对 init methods 做了处理 ：invokeInitMethods(beanName, wrappedBean, mbd);
-        // 此处省略
+        //  1. 对实现了 InitializingBean 接口的bean, 执行 afterPropertiesSet() 方法；
+        //  2. 执行 @Bean#initMethod 指定的方法
+        //
+        // 注意： @PostConstruct 注解的方法，是由 org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor#postProcessBeforeInitialization 调用的
+        //       @PreDestroy 注解的方法，是由 org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor#postProcessBeforeDestruction 调用的
+
 
         if (bean != null) {
             wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);
@@ -308,5 +309,15 @@ public class XTDefaultListableBeanFactory extends XTAbstractBeanFactory implemen
             result = current;
         }
         return result;
+    }
+
+
+    /**
+     * 源码：org.springframework.beans.factory.support.DefaultListableBeanFactory#getBeanDefinitionNames
+     * @return
+     */
+    @Override
+    public String[] getBeanDefinitionNames() {
+        return StringUtils.toStringArray(this.beanDefinitionNames);
     }
 }

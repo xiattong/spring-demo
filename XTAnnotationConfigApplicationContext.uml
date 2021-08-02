@@ -3,17 +3,19 @@
   <ID>JAVA</ID>
   <OriginalElement>com.xiattong.springframework.context.annotation.XTAnnotationConfigApplicationContext</OriginalElement>
   <nodes>
+    <node x="1220.0" y="456.0">com.xiattong.springframework.beans.XTBeanWrapper</node>
     <node x="802.75" y="328.0">com.xiattong.springframework.beans.factory.support.XTAbstractBeanFactory</node>
-    <node x="424.47149122807014" y="141.0">com.xiattong.springframework.beans.factory.XTBeanFactory</node>
-    <node x="825.8464912280701" y="106.0">com.xiattong.springframework.beans.factory.support.XTDefaultSingletonBeanRegistry</node>
-    <node x="135.5" y="1094.0">com.xiattong.springframework.context.annotation.XTAnnotationConfigApplicationContext</node>
-    <node x="1081.1617647058822" y="690.5882352941178">com.xiattong.springframework.beans.factory.config.XTBeanDefinition</node>
+    <node x="424.4714912280702" y="141.0">com.xiattong.springframework.beans.factory.XTBeanFactory</node>
+    <node x="825.8464912280702" y="106.0">com.xiattong.springframework.beans.factory.support.XTDefaultSingletonBeanRegistry</node>
+    <node x="1220.0" y="328.0">com.xiattong.springframework.beans.factory.config.XTBeanPostProcessor</node>
+    <node x="135.5" y="1023.0">com.xiattong.springframework.context.annotation.XTAnnotationConfigApplicationContext</node>
+    <node x="1231.75" y="0.0">com.xiattong.springframework.beans.factory.config.XTBeanDefinition</node>
+    <node x="-182.0" y="729.0">com.xiattong.springframework.beans.factory.support.XTBeanDefinitionReader</node>
     <node x="197.0" y="443.5">com.xiattong.springframework.context.XTApplicationContext</node>
-    <node x="-216.47058823529412" y="745.5">com.xiattong.springframework.beans.factory.support.XTBeanDefinitionReader</node>
     <node x="424.75" y="443.5">com.xiattong.springframework.beans.factory.support.XTBeanDefinitionRegistry</node>
     <node x="0.0" y="443.5">com.xiattong.springframework.context.registry.XTConfigRegistry</node>
-    <node x="120.0" y="734.0">com.xiattong.springframework.context.support.XTAbstractApplicationContext</node>
     <node x="882.3464912280701" y="0.0">com.xiattong.springframework.beans.factory.config.XTSingletonBeanRegistry</node>
+    <node x="120.0" y="734.0">com.xiattong.springframework.context.support.XTAbstractApplicationContext</node>
     <node x="575.8464912280701" y="665.0">com.xiattong.springframework.beans.factory.support.XTDefaultListableBeanFactory</node>
   </nodes>
   <notes />
@@ -33,7 +35,7 @@
     <edge source="com.xiattong.springframework.context.XTApplicationContext" target="com.xiattong.springframework.beans.factory.XTBeanFactory" relationship="INTERFACE_GENERALIZATION">
       <point x="0.0" y="-28.0" />
       <point x="299.0" y="303.0" />
-      <point x="493.72149122807014" y="303.0" />
+      <point x="493.7214912280702" y="303.0" />
       <point x="-69.25" y="51.0" />
     </edge>
     <edge source="com.xiattong.springframework.context.support.XTAbstractApplicationContext" target="com.xiattong.springframework.beans.factory.support.XTBeanDefinitionRegistry" relationship="REALIZATION">
@@ -43,7 +45,7 @@
       <point x="0.0" y="28.0" />
     </edge>
     <edge source="com.xiattong.springframework.beans.factory.support.XTDefaultSingletonBeanRegistry" target="com.xiattong.springframework.beans.factory.config.XTSingletonBeanRegistry" relationship="REALIZATION">
-      <point x="0.0" y="-86.0" />
+      <point x="-1.1368683772161603E-13" y="-86.0" />
       <point x="0.0" y="28.0" />
     </edge>
     <edge source="com.xiattong.springframework.context.support.XTAbstractApplicationContext" target="com.xiattong.springframework.context.XTApplicationContext" relationship="REALIZATION">
@@ -53,7 +55,7 @@
     <edge source="com.xiattong.springframework.beans.factory.support.XTAbstractBeanFactory" target="com.xiattong.springframework.beans.factory.support.XTDefaultSingletonBeanRegistry" relationship="GENERALIZATION">
       <point x="96.0" y="-143.5" />
       <point x="1090.75" y="303.0" />
-      <point x="995.3464912280701" y="303.0" />
+      <point x="995.3464912280702" y="303.0" />
       <point x="0.0" y="86.0" />
     </edge>
     <edge source="com.xiattong.springframework.context.support.XTAbstractApplicationContext" target="com.xiattong.springframework.context.registry.XTConfigRegistry" relationship="REALIZATION">
@@ -70,10 +72,12 @@
     </edge>
     <edge source="com.xiattong.springframework.context.annotation.XTAnnotationConfigApplicationContext" target="com.xiattong.springframework.context.support.XTAbstractApplicationContext" relationship="GENERALIZATION">
       <point x="0.0" y="-15.0" />
+      <point x="299.0" y="1034.5" />
+      <point x="299.0" y="1034.5" />
       <point x="0.0" y="120.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="491.0000000000001" y="570.5000000000001" />
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="699.0" y="526.5" />
   <SelectedNodes>
     <node>com.xiattong.springframework.context.annotation.XTAnnotationConfigApplicationContext</node>
   </SelectedNodes>

@@ -61,8 +61,14 @@ public abstract class XTAbstractApplicationContext implements XTApplicationConte
     @Override
     public void refresh() throws RuntimeException {
 
+        // Prepare the bean factory for use in this context.
+        // 源码：prepareBeanFactory(beanFactory);
+        // 演示 ApplicationContextAware 的实现
+        beanFactory.addBeanPostProcessor(new XTApplicationContextAwareProcessor(this));
+
+
         // 注册 BeanPostProcessor
-        // 源码由 ：org.springframework.context.support.AbstractApplicationContext#registerBeanPostProcessors
+        // 源码：org.springframework.context.support.AbstractApplicationContext#registerBeanPostProcessors
         //       org.springframework.context.support.PostProcessorRegistrationDelegate#registerBeanPostProcessors(
         //              org.springframework.beans.factory.config.ConfigurableListableBeanFactory,
         //              java.util.List<org.springframework.beans.factory.config.BeanPostProcessor>
@@ -71,7 +77,7 @@ public abstract class XTAbstractApplicationContext implements XTApplicationConte
         beanFactory.registerBeanPostProcessors();
 
 
-        // 源码由 org.springframework.context.support.AbstractApplicationContext#finishBeanFactoryInitialization 调用
+        // 源码： org.springframework.context.support.AbstractApplicationContext#finishBeanFactoryInitialization 调用
         // Instantiate all remaining (non-lazy-init) singletons.
         beanFactory.preInstantiateSingletons();
     }
@@ -106,5 +112,14 @@ public abstract class XTAbstractApplicationContext implements XTApplicationConte
 
     public XTDefaultListableBeanFactory getBeanFactory() throws RuntimeException {
         return this.beanFactory;
+    }
+
+    /**
+     * 源码：org.springframework.context.support.AbstractApplicationContext#getBeanDefinitionNames
+     * @return
+     */
+    @Override
+    public String[] getBeanDefinitionNames() {
+        return getBeanFactory().getBeanDefinitionNames();
     }
 }

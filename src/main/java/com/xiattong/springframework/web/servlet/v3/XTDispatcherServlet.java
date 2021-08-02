@@ -233,14 +233,13 @@ public class XTDispatcherServlet extends HttpServlet {
         Method method = handler.getMethod();
         // 请求参数信息
         Map<String, Object[]> requestParams = req.getParameterMap();
-        // 形参数据
+        // 形参数据 (名称，位置)
         Map<String, Integer> paramIndexMapping = handler.getParamIndexMapping();
         // 参数类型信息
         Class<?>[] paramTypes = method.getParameterTypes();
         // 实参数据
         Object[] params = new Object[paramIndexMapping.size()];
-        for (Map.Entry<String, Integer> entry : paramIndexMapping.entrySet())
-        {
+        for (Map.Entry<String, Integer> entry : paramIndexMapping.entrySet()) {
             if (entry.getKey().equals(HttpServletRequest.class.getName())) {
                 params[entry.getValue()] = req;
             } else if (entry.getKey().equals(HttpServletResponse.class.getName())) {

@@ -53,4 +53,39 @@ public class StringUtils {
     public static boolean isNotEmpty(String str) {
         return !isEmpty(str);
     }
+
+    public static Object caseStringValue(String value, Class<?> clazz) {
+        if (value == null) {
+            return null;
+        }
+        if (clazz == String.class) {
+            return value;
+        }
+        if (clazz == Integer.class) {
+            return Integer.valueOf(value);
+        }
+        if (clazz == int.class) {
+            return Integer.valueOf(value).intValue();
+        }
+        return null;
+    }
+
+    /**
+     * 处理特殊字符
+     * @param value
+     * @return
+     */
+    public static String makeStringForRegExp(String value) {
+        if (isEmpty(value)) {
+            return value;
+        }
+        return value.replace("\\","\\\\").replace("*","\\*")
+            .replace("+","\\+").replace("|","\\|")
+            .replace("{","\\{").replace("}","\\}")
+            .replace("(","\\(").replace(")","\\)")
+            .replace("[","\\[").replace("]","\\]")
+            .replace("?","\\?").replace(",","\\,")
+            .replace(".","\\.").replace("&","\\&")
+            .replace("^","\\^").replace("$","\\$");
+    }
 }
