@@ -1,6 +1,7 @@
 package com.xiattong.demo.action;
 
 import com.xiattong.demo.service.IDemoService;
+import com.xiattong.demo.service.impl.DemoService;
 import com.xiattong.springframework.annotation.XTAutowired;
 import com.xiattong.springframework.annotation.XTController;
 import com.xiattong.springframework.annotation.XTRequestMapping;
@@ -24,7 +25,7 @@ import java.util.Map;
 @XTRequestMapping("/action")
 public class DemoAction {
 
-    @XTAutowired
+    @XTAutowired()
     private IDemoService demoService;
 
     @XTRequestMapping("/query")
@@ -40,7 +41,7 @@ public class DemoAction {
         return "haha!";
     }
 
-    @XTRequestMapping("/myPage.html")
+    @XTRequestMapping("/my-page")
     public XTModelAndView myPage(@XTRequestParam("name") String name,
                                  @XTRequestParam("age") Integer age) {
         String msg = demoService.get(name, age);

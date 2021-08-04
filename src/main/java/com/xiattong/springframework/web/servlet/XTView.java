@@ -47,11 +47,11 @@ public class XTView {
             while (null != (line = ra.readLine())) {
                 line = new String(line.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
                 // [^…] 匹配除括号中的任意单个字符
-                Pattern pattern = Pattern.compile("$\\{[^\\}]+\\}", Pattern.CASE_INSENSITIVE);
+                Pattern pattern = Pattern.compile("\\$\\{[^\\}]+\\}", Pattern.CASE_INSENSITIVE);
                 Matcher matcher = pattern.matcher(line);
                 while (matcher.find()) {
                     String paramName = matcher.group();
-                    paramName = paramName.replaceAll("$\\{|\\}","");
+                    paramName = paramName.replaceAll("\\$|\\{|\\}","");
                     Object paramValue = model.get(paramName);
                     if (paramValue == null) {
                         continue;

@@ -1,11 +1,12 @@
 package com.xiattong.springframework.web.servlet.v4;
 
+import com.xiattong.demo.service.IDemoService;
 import com.xiattong.springframework.annotation.XTController;
 import com.xiattong.springframework.annotation.XTRequestMapping;
 import com.xiattong.springframework.context.support.XTAbstractApplicationContext;
 import com.xiattong.springframework.context.support.XTClassPathXmlApplicationContext;
 import com.xiattong.springframework.web.servlet.*;
-import lombok.extern.slf4j.Slf4j;
+//import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -27,14 +29,14 @@ import java.util.regex.Pattern;
  * @date ：Created in 2021/6/30 17:12
  * @modified By：
  */
-@Slf4j
+//@Slf4j
 public class XTDispatcherServlet extends HttpServlet {
 
     /**
      * List of HandlerMappings used by this servlet
      * 源码： org.springframework.web.servlet.DispatcherServlet#handlerMappings
      */
-    private List<XTHandlerMapping> handlerMappings;
+    private List<XTHandlerMapping> handlerMappings = new ArrayList<>();
 
     /** List of HandlerAdapters used by this servlet */
     private XTHandlerAdapter handlerAdapter;
@@ -52,6 +54,7 @@ public class XTDispatcherServlet extends HttpServlet {
         try {
             doDispatch(req, resp);
         } catch (Exception e) {
+            e.printStackTrace();
             resp.getWriter().write("<h1>500 Exception</h1><p>Details: "
                     + Arrays.toString(e.getStackTrace()).replaceAll("\\[|\\]","").replaceAll("\\s","\r\n")
                     + "</p>");
@@ -115,6 +118,7 @@ public class XTDispatcherServlet extends HttpServlet {
 
         // 初始化 IoC
         XTClassPathXmlApplicationContext context = new XTClassPathXmlApplicationContext(config.getInitParameter("contextConfigLocation"));
+        context.getBean(IDemoService.class);
         // 初始化 MVC 组件
         // 源码：org.springframework.web.servlet.FrameworkServlet#onRefresh
         //          --> org.springframework.web.servlet.DispatcherServlet#initStrategies
@@ -157,7 +161,7 @@ public class XTDispatcherServlet extends HttpServlet {
         try {
             for (String beanName : beanNames) {
                 Object controller = context.getBean(beanName);
-                if (controller == null || controller.getClass().isAnnotationPresent(XTController.class)) {
+                if (controller == null || !controller.getClass().isAnnotationPresent(XTController.class)) {
                     continue;
                 }
 
@@ -173,7 +177,7 @@ public class XTDispatcherServlet extends HttpServlet {
                         String url = ("/" + baseUrl + requestMapping.value()).replaceAll("/+","/");
                         Pattern pattern = Pattern.compile(url);
                         this.handlerMappings.add(new XTHandlerMapping(controller, method, pattern));
-                        log.info("HandlerMapping:" + url + ":" + method);
+                        //log.info("HandlerMapping:" + url + ":" + method);
                     }
                 }
             }

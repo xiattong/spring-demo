@@ -8,7 +8,7 @@ import com.xiattong.springframework.beans.XTBeanWrapper;
 import com.xiattong.springframework.beans.factory.config.XTBeanDefinition;
 import com.xiattong.springframework.beans.factory.config.XTBeanPostProcessor;
 import com.xiattong.springframework.utils.StringUtils;
-import lombok.extern.slf4j.Slf4j;
+//import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date ：Created in 2021/7/16 0:54
  * @modified By：
  */
-@Slf4j
+//@Slf4j
 public class XTDefaultListableBeanFactory extends XTAbstractBeanFactory implements XTBeanDefinitionRegistry{
 
     /**
@@ -90,7 +90,7 @@ public class XTDefaultListableBeanFactory extends XTAbstractBeanFactory implemen
     protected XTBeanDefinition getBeanDefinition(String beanName) throws RuntimeException {
         XTBeanDefinition bd = this.beanDefinitionMap.get(beanName);
         if (bd == null) {
-            log.trace("No bean named '" + beanName + "' found in " + this);
+            //log.trace("No bean named '" + beanName + "' found in " + this);
             throw new RuntimeException(beanName);
         }
         return bd;
@@ -205,10 +205,8 @@ public class XTDefaultListableBeanFactory extends XTAbstractBeanFactory implemen
             throw new RuntimeException("Cannot apply property values to null instance");
         }
 
-        Object instance = instanceWrapper.getWrappedClass();
-        Class<?> instanceClass = instance.getClass();
-
-        //
+        Class<?> instanceClass = instanceWrapper.getWrappedClass();
+        // 对 @XTComponent、@XTController、@XTService 注解的类进行依赖注入
         if (instanceClass.isAnnotationPresent(XTComponent.class)
                 || instanceClass.isAnnotationPresent(XTController.class)
                 || instanceClass.isAnnotationPresent(XTService.class)) {
@@ -221,14 +219,12 @@ public class XTDefaultListableBeanFactory extends XTAbstractBeanFactory implemen
                 XTAutowired autowired = field.getAnnotation(XTAutowired.class);
                 String autowiredBeanName = autowired.value().trim();
                 if (StringUtils.isEmpty(autowiredBeanName)) {
-                    autowiredBeanName = field.getType().getName();
+                    autowiredBeanName = field.getName();
                 }
                 field.setAccessible(true);
-
-
                 try {
-                    field.set(instance, this.getBean(autowiredBeanName));
-                } catch (IllegalAccessException e) {
+                    field.set(instanceWrapper.getWrappedInstance(), this.getBean(autowiredBeanName));
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 

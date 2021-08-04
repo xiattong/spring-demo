@@ -27,7 +27,7 @@ public class Test {
         }*/
 
         Pattern pattern = Pattern.compile("\\$\\{[^\\}]+\\}", Pattern.CASE_INSENSITIVE);
-        String line = "1234${abc}567${def}890${ghi}haha";
+        String line = "    <h1>你好，${msg}</h1>";
         Matcher matcher = pattern.matcher(line);
         while (matcher.find()) {
             String paramName = matcher.group();

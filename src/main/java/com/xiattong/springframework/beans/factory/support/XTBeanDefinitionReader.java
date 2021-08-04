@@ -2,7 +2,7 @@ package com.xiattong.springframework.beans.factory.support;
 
 import com.xiattong.springframework.beans.factory.config.XTBeanDefinition;
 import com.xiattong.springframework.utils.StringUtils;
-import lombok.extern.slf4j.Slf4j;
+//import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +17,7 @@ import java.util.*;
  * @date ：Created in 2021/7/16 8:54
  * @modified By：
  */
-@Slf4j
+//@Slf4j
 public class XTBeanDefinitionReader {
 
     private final XTBeanDefinitionRegistry registry;
@@ -46,14 +46,14 @@ public class XTBeanDefinitionReader {
             config.load(is);
         } catch (IOException e) {
             e.printStackTrace();
-            log.error(e.getMessage());
+            //log.error(e.getMessage());
         } finally {
             if (is != null) {
                 try {
                     is.close();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    log.error(e.getMessage());
+                    //log.error(e.getMessage());
                 }
             }
         }
@@ -68,7 +68,7 @@ public class XTBeanDefinitionReader {
      */
     private void doScan(String basePackages) {
         if (Objects.isNull(basePackages)) {
-            log.error("未配置资源路径");
+            //log.error("未配置资源路径");
             return;
         }
         // 扫描资源路径下待加载的类
@@ -103,7 +103,7 @@ public class XTBeanDefinitionReader {
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            log.error(e.getMessage());
+            //log.error(e.getMessage());
         }
     }
 

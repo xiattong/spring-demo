@@ -2,7 +2,7 @@ package com.xiattong.springframework.beans.factory.support;
 
 import com.xiattong.springframework.beans.factory.XTObjectFactory;
 import com.xiattong.springframework.beans.factory.config.XTSingletonBeanRegistry;
-import lombok.extern.slf4j.Slf4j;
+//import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date ：Created in 2021/7/21 22:11
  * @modified By：
  */
-@Slf4j
+//@Slf4j
 public class XTDefaultSingletonBeanRegistry implements XTSingletonBeanRegistry {
 
     /**
@@ -53,7 +53,7 @@ public class XTDefaultSingletonBeanRegistry implements XTSingletonBeanRegistry {
                     addSingleton(beanName, singletonObject);
                 } catch (RuntimeException e) {
                     e.printStackTrace();
-                    log.error("Bean 实例化异常！");
+                    //log.error("Bean 实例化异常！");
                 }
             }
             return singletonObject;
