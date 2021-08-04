@@ -15,6 +15,7 @@ import com.xiattong.springframework.annotation.XTService;
 @XTService
 public class DemoService implements IDemoService {
 	public String get(String name, Integer age) {
+		System.out.println("拿到参数：" + name + "," + age);
 		return "My name is " + name +","+ age + "from service.";
 	}
 }

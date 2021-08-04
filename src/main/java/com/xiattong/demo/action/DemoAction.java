@@ -5,10 +5,13 @@ import com.xiattong.springframework.annotation.XTAutowired;
 import com.xiattong.springframework.annotation.XTController;
 import com.xiattong.springframework.annotation.XTRequestMapping;
 import com.xiattong.springframework.annotation.XTRequestParam;
+import com.xiattong.springframework.web.servlet.XTModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author ：xiattong
@@ -35,5 +38,14 @@ public class DemoAction {
             e.printStackTrace();
         }
         return "haha!";
+    }
+
+    @XTRequestMapping("/myPage.html")
+    public XTModelAndView myPage(@XTRequestParam("name") String name,
+                                 @XTRequestParam("age") Integer age) {
+        String msg = demoService.get(name, age);
+        Map<String, Object> model = new HashMap<>();
+        model.put("msg", msg);
+        return new XTModelAndView("myPage.html", model);
     }
 }

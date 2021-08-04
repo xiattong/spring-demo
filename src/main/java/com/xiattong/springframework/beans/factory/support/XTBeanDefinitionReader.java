@@ -26,6 +26,8 @@ public class XTBeanDefinitionReader {
 
     private final String SCAN_NAME = "scanPackage";
 
+    private Properties config;
+
     public XTBeanDefinitionReader(XTBeanDefinitionRegistry registry) {
         // 这个 registry 是 XTAbstractApplicationContext
         // 最终通过调用 XTAbstractApplicationContext#registerBeanDefinition 方法注册 BeanDefinition
@@ -39,7 +41,7 @@ public class XTBeanDefinitionReader {
     private void scan(String... configLocations) {
         // 通过 URL 定位找到配置文件，并解析出资料路径
         InputStream is = this.getClass().getClassLoader().getResourceAsStream(configLocations[0].replace("classpath:",""));
-        Properties config = new Properties();
+        this.config = new Properties();
         try {
             config.load(is);
         } catch (IOException e) {
@@ -114,4 +116,7 @@ public class XTBeanDefinitionReader {
         registerBean();
     }
 
+    public Properties getConfig() {
+        return this.config;
+    }
 }

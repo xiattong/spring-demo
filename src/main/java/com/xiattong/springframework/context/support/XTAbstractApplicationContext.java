@@ -7,6 +7,8 @@ import com.xiattong.springframework.beans.factory.support.XTDefaultListableBeanF
 import com.xiattong.springframework.context.XTApplicationContext;
 import com.xiattong.springframework.context.registry.XTConfigRegistry;
 
+import java.util.Properties;
+
 /**
  * @author ：xiattong
  * @description：IoC 容器实现类的顶层抽象类，实现 IoC 容器相关的公共逻辑
@@ -121,5 +123,9 @@ public abstract class XTAbstractApplicationContext implements XTApplicationConte
     @Override
     public String[] getBeanDefinitionNames() {
         return getBeanFactory().getBeanDefinitionNames();
+    }
+
+    public Properties getConfig() {
+        return this.reader.getConfig();
     }
 }
