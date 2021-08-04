@@ -1,6 +1,5 @@
 package com.xiattong.springframework.beans.factory.config;
 
-import com.sun.istack.internal.Nullable;
 
 /**
  * interface that defines a registry for shared bean instances.
@@ -12,6 +11,5 @@ public interface XTSingletonBeanRegistry {
      * @param beanName
      * @return
      */
-    @Nullable
     Object getSingleton(String beanName);
 }

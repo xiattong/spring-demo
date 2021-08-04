@@ -1,6 +1,5 @@
 package com.xiattong.springframework.web.servlet.v4;
 
-import com.sun.istack.internal.Nullable;
 import com.xiattong.springframework.annotation.XTController;
 import com.xiattong.springframework.annotation.XTRequestMapping;
 import com.xiattong.springframework.context.support.XTAbstractApplicationContext;
@@ -35,16 +34,12 @@ public class XTDispatcherServlet extends HttpServlet {
      * List of HandlerMappings used by this servlet
      * 源码： org.springframework.web.servlet.DispatcherServlet#handlerMappings
      */
-
-    @Nullable
     private List<XTHandlerMapping> handlerMappings;
 
     /** List of HandlerAdapters used by this servlet */
-    @Nullable
     private XTHandlerAdapter handlerAdapter;
 
     /** List of ViewResolvers used by this servlet */
-    @Nullable
     private XTViewResolver viewResolver;
 
     @Override
@@ -104,14 +99,6 @@ public class XTDispatcherServlet extends HttpServlet {
             }
         }
     }
-
-
-
-
-
-
-
-
 
 
     /**

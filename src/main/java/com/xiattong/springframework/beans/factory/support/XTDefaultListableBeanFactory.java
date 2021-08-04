@@ -1,6 +1,5 @@
 package com.xiattong.springframework.beans.factory.support;
 
-import com.sun.istack.internal.Nullable;
 import com.xiattong.springframework.annotation.XTAutowired;
 import com.xiattong.springframework.annotation.XTComponent;
 import com.xiattong.springframework.annotation.XTController;
@@ -11,7 +10,6 @@ import com.xiattong.springframework.beans.factory.config.XTBeanPostProcessor;
 import com.xiattong.springframework.utils.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.annotation.PreDestroy;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +59,6 @@ public class XTDefaultListableBeanFactory extends XTAbstractBeanFactory implemen
      * @param type
      * @return
      */
-    @Nullable
     public String[] getBeanNamesForType(Class<?> type) {
         String[] resolvedBeanNames = this.allBeanNamesByType.get(type);
         if (resolvedBeanNames != null) {

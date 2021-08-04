@@ -7,7 +7,7 @@
 	<display-name>Gupao Web Application</display-name>
 	<servlet>
 		<servlet-name>xtmvc</servlet-name>
-		<servlet-class>com.xiattong.springframework.web.servlet.v4.XTDispatcherServlet</servlet-class>
+		<servlet-class>com.xiattong.springframework.web.servlet.v3.XTDispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:application.properties</param-value>
